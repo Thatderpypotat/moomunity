@@ -2,6 +2,7 @@
     import { enhance } from '$app/forms';
         
     //export let data: PageData;
+    export let form;
 </script>
 
 <h1>Här kan du registrera:</h1>
@@ -29,11 +30,27 @@
         </select>
     </div>
     <button>Skapa användare</button>
+    {#if form?.error}
+        <span style="color: red;">{form.error}</span>
+    {/if}
 </form>
+<div>
+    <button class="button"><a href="/">Back</a></button>
+</div>
 </div>
 
 
 <style>
+button{
+    height: 50px;
+    width: 90px;
+    margin-top: 10px;
+    background-color:blueviolet;
+}
+.button{
+    height: 30px;
+    width: 70px;
+}
 input, option, select{
     color: black;
 }

@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { redirect, type Actions } from '@sveltejs/kit';
+import { redirect, type Actions, fail } from '@sveltejs/kit';
 import { prisma } from '$lib';
 import * as crypto from "node:crypto";
 
@@ -22,24 +22,37 @@ export const actions: Actions = {
         let data = await request.formData();
         let new_username = data.get("new_user")?.toString();
         let new_password = data.get("new_pass")?.toString();
+        let age = parseInt(data.get("age")?.toString() ||"");
+        let gender = data.get("gender")?.toString();
+        let namn = data.get("personNamn")?.toString();
+        let efternamn = data.get("personEfternamn")?.toString();
         const user = await prisma.user.findUnique({
             where:{
                 name:new_username
             }
         })
 
-        if(new_username && new_password){
+        if(new_username && new_password && age && gender && namn && efternamn){
+            console.log("workie")
             if(!user){
+                console.log("workies")
                 let fixed_pass = hashPassword(new_password);
                 await prisma.user.create({
                     data: {
                         name: new_username,
                         youdontknowwhatdisis: fixed_pass.hash,
-                        salt: fixed_pass.salt
+                        salt: fixed_pass.salt,
+                        personNamn: namn,
+                        personEfternamn: efternamn,
+                        age: age,
+                        gender: gender,
+                        admin: false
                     },
                 })
                 cookies.set("username", new_username, {secure : false, path:"/"})
                 throw redirect(303, "/dashboard");
+            } else{
+                return fail(403, {error: 'Username taken', errorType: 1});
             }
         }
 

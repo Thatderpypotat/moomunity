@@ -10,3 +10,9 @@
 		</ul>
 	</div>
 </div>
+
+<style>
+	li{
+		margin: 5px;
+	}
+</style>
