@@ -22,6 +22,7 @@ export const actions: Actions = {
         let data = await request.formData();
         let new_username = data.get("new_user")?.toString();
         let new_password = data.get("new_pass")?.toString();
+        let lev = data.get("lev")?.toString();
         let age = parseInt(data.get("age")?.toString() ||"");
         let gender = data.get("gender")?.toString();
         let namn = data.get("personNamn")?.toString();
@@ -46,7 +47,8 @@ export const actions: Actions = {
                         personEfternamn: efternamn,
                         age: age,
                         gender: gender,
-                        admin: false
+                        admin: false,
+                        lev: lev
                     },
                 })
                 cookies.set("username", new_username, {secure : false, path:"/"})

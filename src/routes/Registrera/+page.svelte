@@ -14,6 +14,10 @@
         <input id="namn" type="text" name="new_user">
         <label for="passW">Ditt lösenord</label>
         <input id="passW" type="password" name="new_pass">
+        <select name="lev" id="öev">
+            <option value="{true}">Leverantör</option>
+            <option value="{false}">Vanlig bybo</option>
+        </select>
     </div>
     <div>
         <label for="personNamn">Ditt namn</label>
