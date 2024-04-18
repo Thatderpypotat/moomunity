@@ -22,11 +22,12 @@ export const actions: Actions = {
         let data = await request.formData();
         let new_username = data.get("new_user")?.toString();
         let new_password = data.get("new_pass")?.toString();
-        let lev = data.get("lev")?.toString();
+        let lev = data.get("lev")?.toString() == "true";
         let age = parseInt(data.get("age")?.toString() ||"");
         let gender = data.get("gender")?.toString();
         let namn = data.get("personNamn")?.toString();
         let efternamn = data.get("personEfternamn")?.toString();
+        
         const user = await prisma.user.findUnique({
             where:{
                 name:new_username

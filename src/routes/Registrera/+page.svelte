@@ -14,9 +14,9 @@
         <input id="namn" type="text" name="new_user">
         <label for="passW">Ditt lösenord</label>
         <input id="passW" type="password" name="new_pass">
-        <select name="lev" id="öev">
-            <option value="{true}">Leverantör</option>
-            <option value="{false}">Vanlig bybo</option>
+        <select name="lev" id="lev">
+            <option value="true">Leverantör</option>
+            <option value="false">Vanlig bybo</option>
         </select>
     </div>
     <div>
@@ -26,7 +26,7 @@
         <input type="text" id="personEfternamn" name="personEfternamn">
         <label for="age">Din ålder</label>
         <input type="number" id="age" name="age" min=15 max=100>
-        <label for="gender">Ditt namn</label>
+        <label for="gender">Ditt kön</label>
         <select name="gender" id="gender">
             <option value="female">Kvinna</option>
             <option value="male">Man</option>

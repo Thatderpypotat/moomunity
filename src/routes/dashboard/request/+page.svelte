@@ -19,3 +19,18 @@
         <button id="button">Skicka in</button>
     </form>
 </div>
+
+
+{#if data.isAdmin}
+    <div>
+        {#each data.tjansts as tjunst}
+            <div class="special">
+                <form action="/?acceeeept" method="post" use:enhance>
+                    <h2>{tjunst.name}</h2>
+                    <input type="hidden" name="me" value={tjunst.name}>
+                    <input type="checkbox" name="acceeeept" id="acceeeept">
+                </form>
+            </div>
+        {/each}
+    </div>
+{/if}

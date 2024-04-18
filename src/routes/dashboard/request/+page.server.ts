@@ -19,7 +19,12 @@ export const load = (async ({cookies}) => {
                 isAdmin = user.admin;
             } 
     }
-    return {isAdmin};
+    let tjansts = await prisma.tjanst.findMany({
+        where:{
+            accepted:false
+        }
+    });
+    return {tjansts, isAdmin};
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
@@ -27,6 +32,7 @@ export const actions: Actions = {
         let data = await request.formData();
         let name = data.get("request")?.toString();
         let desc = data.get("description")?.toString();
+        let accepted = data.get("accepted")?.toString() == "on";
         let checkedName = await prisma.tjanst.findUnique({
             where:{
                 name:name
@@ -38,10 +44,26 @@ export const actions: Actions = {
                     data:{
                         name:name,
                         desc:desc,
-                        accepted: false
+                        accepted: accepted
                     }
                 })
             }
+        }
+    },
+    acceeeept: async ({request}) => {
+        let data = await request.formData();
+        let yesh = data.get("acceeeept")?.toString() == "acceeeept";
+        let namename = data.get("me")?.toString();
+
+        if(yesh && namename){
+            await prisma.tjanst.update({
+                where:{
+                    name:namename
+                },
+                data:{
+                    accepted:yesh
+                }
+            })
         }
     }
 };
