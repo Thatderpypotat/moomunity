@@ -42,7 +42,7 @@ export const actions: Actions = {
         }
     },
     reg: async ({cookies}) => {
-        let username = cookies.get("username");
+        let username = cookies.get("activeUser");
         if(!username){
             throw redirect(303, "/registrera");
         }

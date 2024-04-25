@@ -52,7 +52,7 @@ export const actions: Actions = {
                         lev: lev
                     },
                 })
-                cookies.set("username", new_username, {secure : false, path:"/"})
+                cookies.set("activeUser", new_username, {secure : false, path:"/"})
                 throw redirect(303, "/dashboard");
             } else{
                 return fail(403, {error: 'Username taken', errorType: 1});

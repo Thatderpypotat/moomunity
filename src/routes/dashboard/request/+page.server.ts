@@ -44,7 +44,8 @@ export const actions: Actions = {
                     data:{
                         name:name,
                         desc:desc,
-                        accepted: accepted
+                        accepted: accepted,
+                        likes: 0
                     }
                 })
             }

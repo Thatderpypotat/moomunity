@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { browser } from "$app/environment";
     import { enhance } from "$app/forms";
-    import type { PageData } from "./$types";
+    import { invalidateAll } from "$app/navigation";
+    //import type { PageData } from "./$types";
     export let data;
+    browser? setInterval(invalidateAll,1000):null;
 </script>
 
 
@@ -34,3 +37,10 @@
         {/each}
     </div>
 {/if}
+
+
+<style>
+    input, h2{
+    color: black;
+    }
+</style>

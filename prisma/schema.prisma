@@ -21,6 +21,8 @@ model user {
   age Int
   admin Boolean
   lev Boolean
+  likey likeCheker[]
+  levererat levCheker[]
 }
 
 model tjanst{
@@ -28,4 +30,26 @@ model tjanst{
   name String @unique
   desc String
   accepted Boolean
+  likes Int
+  levs Int
+  liked likeCheker[]
+  leved levCheker[]
+}
+
+model likeCheker{
+  id                   Int         @id @default(autoincrement())
+  user user      @relation(fields: [userN], references: [name])
+  userN String 
+  tjanst tjanst @relation(fields: [tname], references: [name])
+  tname String
+  likee Boolean
+}
+
+model levCheker{
+  id                   Int         @id @default(autoincrement())
+  user user      @relation(fields: [userName], references: [name])
+  userName String 
+  tjanst tjanst @relation(fields: [tjanstname], references: [name])
+  tjanstname String
+  levee Boolean
 }
